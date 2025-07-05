@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaBox, FaMapMarkedAlt, FaUserEdit, FaShippingFast, FaHistory, FaPlusCircle } from 'react-icons/fa';
+import { FaBox, FaMapMarkedAlt, FaUserEdit, FaShippingFast, FaHistory, FaPlusCircle, FaHome } from 'react-icons/fa';
+import ProFast from '../pages/shared/Navbar/ProFast';
 
 const DashboardLayout = () => {
     return (
@@ -35,8 +36,17 @@ const DashboardLayout = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+                <div className='m-5'>
+                    <ProFast></ProFast>
+                </div>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-40 lg:w-80 p-4">
                     {/* Sidebar content here */}
+                    <li>
+                        <NavLink to="/" className="flex items-center space-x-2">
+                            <FaHome />
+                            <span>Home</span>
+                        </NavLink>
+                    </li>
                     <li>
                         <NavLink to="/dashboard/myParcel" className="flex items-center space-x-2">
                             <FaBox />

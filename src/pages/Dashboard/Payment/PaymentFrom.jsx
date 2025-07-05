@@ -70,7 +70,8 @@ const PaymentFrom = () => {
             payment_method: {
                 card,
                 billing_details: {
-                    name: 'Test User', // optional
+                    name: user?.displayName ,
+                     email: user?.email
                 },
             },
         });

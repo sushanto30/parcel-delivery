@@ -1,23 +1,43 @@
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../../Auth/AuthContext';
+import { FaHome, FaInfoCircle, FaPlusSquare, FaTachometerAlt } from 'react-icons/fa';
+import ProFast from './ProFast';
 
 const Navbar = () => {
 
-    const { handleSignOut, user}=use(AuthContext)
+    const { handleSignOut, user } = use(AuthContext)
 
     const navLink = <>
 
-        <li> <NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/about'}>About</NavLink></li>
-        <li><NavLink to={'/addParcels'}>AddParcels</NavLink></li>
+        <li>
+            <NavLink to="/" className="flex items-center space-x-2">
+                <FaHome />
+                <span>Home</span>
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to="/about" className="flex items-center space-x-2">
+                <FaInfoCircle />
+                <span>About</span>
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to="/addParcels" className="flex items-center space-x-2">
+                <FaPlusSquare />
+                <span>Add Parcels</span>
+            </NavLink>
+        </li>
 
-        {
-            user && <>
-             <li><NavLink to={'/dashboard'}>DashBoard</NavLink></li>
-            </>
-        }
-        
+        {user && (
+            <li>
+                <NavLink to="/dashboard" className="flex items-center space-x-2">
+                    <FaTachometerAlt />
+                    <span>Dashboard</span>
+                </NavLink>
+            </li>
+        )}
+
 
     </>
 
@@ -41,10 +61,7 @@ const Navbar = () => {
                         {navLink}
                     </ul>
                 </div>
-                <div className='flex items-end'>
-                    <img className='w-8' src="./../../../../src/assets/logo.png" alt="" />
-                    <h1 className='text-2xl -ml-3 font-bold'>ProFast</h1>
-                </div>
+                <ProFast></ProFast>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -52,9 +69,9 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-               {
-                user?  <button className='btn' onClick={()=>handleSignOut()}><Link>Log out</Link></button> :  <button className='btn'><Link to={'/login'}>Login</Link></button>
-               }
+                {
+                    user ? <button className='btn' onClick={() => handleSignOut()}><Link>Log out</Link></button> : <button className='btn'><Link to={'/login'}>Login</Link></button>
+                }
             </div>
         </div>
     );
