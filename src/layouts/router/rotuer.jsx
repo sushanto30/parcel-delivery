@@ -11,6 +11,7 @@ import AddParcels from "../../pages/AddParcels/AddParcels";
 import DashboardLayout from "../DashboardLayout";
 import MyParcels from "../../pages/Dashboard/Home/MyParcels";
 import Payment from "../../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../../pages/Dashboard/Payment/PaymentHistory";
   
   
   
@@ -60,6 +61,10 @@ import Payment from "../../pages/Dashboard/Payment/Payment";
       {
         path:'payment/:id',
         Component:Payment
+      },
+      {
+        path:'parcelHistory',
+        Component:PaymentHistory
       }
     ]
     

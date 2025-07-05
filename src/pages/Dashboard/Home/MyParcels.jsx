@@ -72,7 +72,7 @@ console.log(parcels)
                                 <td className="py-2 px-4 border">{parcel.type}</td>
                                 <td className="py-2 px-4 border">{parcel.cost}</td>
                                 <td className="py-2 px-4 border">
-                                    <span className={`px-2 py-1 rounded text-white ${parcel.payment_status === 'Paid' ? 'bg-green-500' : 'bg-red-500'
+                                    <span className={`px-2 py-1 rounded text-white ${parcel.payment_status === 'paid' ? 'bg-green-500' : 'bg-red-500'
                                         }`}>
                                         {parcel.payment_status}
                                     </span>
@@ -88,7 +88,13 @@ console.log(parcels)
                                 </td>
                                 <td className="py-2 px-4 border space-x-2">
                                     <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">View</button>
-                                    <Link to={`/dashboard/payment/${parcel._id}`}><button className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Pay</button></Link>
+                                    {
+                                        parcel.payment_status === 'paid'?
+
+                                         <button disabled  className="bg-gray-300 text-black px-3 py-1 rounded cursor-not-allowed ">Paid</button>
+                                         :
+                                         <Link to={`/dashboard/payment/${parcel._id}`}><button className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Pay</button></Link>
+                                    }
                                     <button onClick={()=>handleDelete(parcel._id)} className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Delete</button>
                                 </td>
                             </tr>

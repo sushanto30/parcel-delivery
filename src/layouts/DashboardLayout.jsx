@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
+import { FaBox, FaMapMarkedAlt, FaUserEdit, FaShippingFast, FaHistory, FaPlusCircle } from 'react-icons/fa';
 
 const DashboardLayout = () => {
     return (
@@ -26,7 +27,7 @@ const DashboardLayout = () => {
                         </label>
                     </div>
                     <div className="mx-2 flex-1 px-2"> Dashboard</div>
-                     
+
                 </div>
                 {/* Page content here */}
                 <Outlet></Outlet>
@@ -36,8 +37,42 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-40 lg:w-80 p-4">
                     {/* Sidebar content here */}
-                    <li><NavLink to={'myParcel'}>My Parcel</NavLink></li>
-                    <li><a>Sidebar Item 2</a></li>
+                    <li>
+                        <NavLink to="/dashboard/myParcel" className="flex items-center space-x-2">
+                            <FaBox />
+                            <span>My Parcel</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/trackParcel" className="flex items-center space-x-2">
+                            <FaMapMarkedAlt />
+                            <span>Track Parcel</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/updateProfile" className="flex items-center space-x-2">
+                            <FaUserEdit />
+                            <span>Update Profile</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/sendParcel" className="flex items-center space-x-2">
+                            <FaShippingFast />
+                            <span>Send Parcel</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/parcelHistory" className="flex items-center space-x-2">
+                            <FaHistory />
+                            <span>Parcel History</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="newBooking" className="flex items-center space-x-2">
+                            <FaPlusCircle />
+                            <span>New Booking</span>
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
         </div>
