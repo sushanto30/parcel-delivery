@@ -27,7 +27,7 @@ console.log(parcels)
     if (error) return <p>Error loading parcels: {error.message}</p>;
 
 
-    const handleDelete = (id) => {
+    const handleDelete =  (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -36,7 +36,7 @@ console.log(parcels)
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!'
-        }).then(async (result) => {
+        }).then( async (result) => {
             if (result.isConfirmed) {
                 try {
                     const res = await axiosSecure.delete(`/parcels/${id}`);

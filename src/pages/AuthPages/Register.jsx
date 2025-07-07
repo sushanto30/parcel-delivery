@@ -4,12 +4,15 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../Auth/AuthContext';
 import { imageConvert } from '../../Sheard/ImageConvert';
 import { updateProfile } from 'firebase/auth';
+import useUserAxios from '../../Sheard/useUserAxios';
 
 
 const Register = () => {
 
     const { handleRegisterWithPass } = use(AuthContext)
     const [images, setImages] = useState(null)
+
+    const userAxios = useUserAxios()
 
 
     const { register, handleSubmit } = useForm()
@@ -24,6 +27,26 @@ const Register = () => {
         setImages(photo)
         console.log('convet photo', photo)
         console.log(" namer:", data);
+
+
+        const userInfo = {
+            email: email,
+            name : data.username,
+            role : 'user',
+            create_at : new Date().toISOString()
+        }
+
+       try{
+         const res = await userAxios.post('/users',userInfo)
+          
+         console.log(res.data)
+       }
+       catch{
+        error => console.log('user error ', error)
+       }
+
+
+
 
         try {
             const currentUser = await handleRegisterWithPass(email, password)
