@@ -1,7 +1,7 @@
 import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../../Auth/AuthContext';
-import { FaHome, FaInfoCircle, FaPlusSquare, FaTachometerAlt } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaMotorcycle, FaPlusSquare, FaTachometerAlt } from 'react-icons/fa';
 import ProFast from './ProFast';
 
 const Navbar = () => {
@@ -26,6 +26,13 @@ const Navbar = () => {
             <NavLink to="/addParcels" className="flex items-center space-x-2">
                 <FaPlusSquare />
                 <span>Add Parcels</span>
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/beArider" className="flex items-center space-x-2">
+                <FaMotorcycle />
+                <span>Rider Parcels</span>
             </NavLink>
         </li>
 

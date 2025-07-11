@@ -12,6 +12,9 @@ import DashboardLayout from "../DashboardLayout";
 import MyParcels from "../../pages/Dashboard/Home/MyParcels";
 import Payment from "../../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../../pages/Dashboard/Payment/PaymentHistory";
+import BeARider from "../../pages/BeARider/BeARider";
+import PendingRider from "../../pages/Dashboard/Riders/PendingRider";
+import ActiveRider from "../../pages/Dashboard/Riders/ActiveRider";
   
   
   
@@ -30,6 +33,11 @@ import PaymentHistory from "../../pages/Dashboard/Payment/PaymentHistory";
         {
           path:'/addParcels',
           Component:AddParcels
+        },
+        {
+          path:'/beArider',
+          Component:BeARider,
+          loader: ()=>fetch('/public/warehouses.json')
         }
     ]
      
@@ -65,6 +73,14 @@ import PaymentHistory from "../../pages/Dashboard/Payment/PaymentHistory";
       {
         path:'parcelHistory',
         Component:PaymentHistory
+      },
+      {
+        path:'pendingRider',
+        Component: PendingRider
+      },
+      {
+        path: 'ActiveRider',
+        Component: ActiveRider
       }
     ]
     

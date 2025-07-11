@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Auth/AuthContext';
 
 
 const axiosSecure = axios.create({
@@ -7,7 +8,29 @@ const axiosSecure = axios.create({
 })
 
 const useAxiosSecure = () => {
-    return  axiosSecure
+
+    const { user } = useContext(AuthContext)
+
+    // console.log(user)
+
+    if (!user) {
+        return 'loaddd..'
+    }
+    else {
+        axiosSecure.interceptors.request.use(config => {
+
+            config.headers.authorization = `Bearer ${user?.accessToken}`
+
+            return config
+        },
+            error => {
+                return Promise.reject(error)
+            }
+        )
+    }
+
+
+    return axiosSecure
 };
 
 export default useAxiosSecure;

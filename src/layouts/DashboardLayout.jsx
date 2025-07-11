@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaBox, FaMapMarkedAlt, FaUserEdit, FaShippingFast, FaHistory, FaPlusCircle, FaHome } from 'react-icons/fa';
+import { FaBox, FaMapMarkedAlt, FaUserEdit, FaShippingFast, FaHistory, FaPlusCircle, FaHome, FaUserCheck, FaUserClock } from 'react-icons/fa';
 import ProFast from '../pages/shared/Navbar/ProFast';
 
 const DashboardLayout = () => {
@@ -78,9 +78,22 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="newBooking" className="flex items-center space-x-2">
+                        <NavLink to="/dashboard/newBooking" className="flex items-center space-x-2">
                             <FaPlusCircle />
                             <span>New Booking</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/ActiveRider" className="flex items-center space-x-2">
+                            <FaUserCheck /> {/* Active Rider Icon */}
+                            <span>Active Rider</span>
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to="/dashboard/pendingRider" className="flex items-center space-x-2">
+                            <FaUserClock /> {/* Pending Rider Icon */}
+                            <span>Pending Rider</span>
                         </NavLink>
                     </li>
                 </ul>

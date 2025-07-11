@@ -9,7 +9,7 @@ import useUserAxios from '../../Sheard/useUserAxios';
 
 const Register = () => {
 
-    const { handleRegisterWithPass } = use(AuthContext)
+    const { handleRegisterWithPass, GoogleLogin } = use(AuthContext)
     const [images, setImages] = useState(null)
 
     const userAxios = useUserAxios()
@@ -31,19 +31,20 @@ const Register = () => {
 
         const userInfo = {
             email: email,
-            name : data.username,
-            role : 'user',
-            create_at : new Date().toISOString()
+            name: data.username,
+            role: 'user',
+            create_at: new Date().toISOString(),
+            Last_Login: new Date().toISOString()
         }
 
-       try{
-         const res = await userAxios.post('/users',userInfo)
-          
-         console.log(res.data)
-       }
-       catch{
-        error => console.log('user error ', error)
-       }
+        try {
+            const res = await userAxios.post('/users', userInfo)
+
+            console.log(res.data)
+        }
+        catch {
+            error => console.log('user error ', error)
+        }
 
 
 
@@ -67,13 +68,43 @@ const Register = () => {
 
         }
 
-        // console.log(data)
-        // console.log(data.photo[0])
-
-
-
 
     }
+
+    const handelSocialLogin = () => {
+
+        GoogleLogin()
+            .then(async(res) => {
+
+                const email = res.user.email
+                const name = res.user.displayName
+                const userInfo = {
+                    email: email,
+                    name: name,
+                    role: 'user',
+                    create_at: new Date().toISOString(),
+                    Last_Login: new Date().toISOString()
+                }
+
+
+                try {
+                    const res = await userAxios.post('/users', userInfo)
+
+                    console.log(res.data)
+                }
+                catch {
+                    error => console.log('user error ', error)
+                }
+
+
+            })
+            .catch(error => console.log(error))
+    }
+
+
+
+
+
 
     return (
         <div className="w-full   p-8 space-y-3 rounded-l-xl bg-gray-100  ">
@@ -82,11 +113,11 @@ const Register = () => {
                 <div className="space-y-1 text-sm flex flex-col  justify-center">
                     <div className="avatar">
                         {
-                            images? <div className="w-12">
-                            <img src={images} />
-                        </div> : ''
+                            images ? <div className="w-12">
+                                <img src={images} />
+                            </div> : ''
                         }
-                        
+
                     </div>
                     <div className=' '>
                         <input id='photo' className='border hidden' {...register('photo')} type="file" accept='image' />
@@ -119,7 +150,7 @@ const Register = () => {
                 <div className="flex-1 h-px sm:w-16  "></div>
             </div>
             <div className="flex justify-center space-x-4">
-                <button aria-label="Log in with Google" className="p-3 rounded-sm">
+                <button onClick={handelSocialLogin} aria-label="Log in with Google" className="p-3 rounded-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
                         <path d="M16.318 13.714v5.484h9.078c-0.37 2.354-2.745 6.901-9.078 6.901-5.458 0-9.917-4.521-9.917-10.099s4.458-10.099 9.917-10.099c3.109 0 5.193 1.318 6.38 2.464l4.339-4.182c-2.786-2.599-6.396-4.182-10.719-4.182-8.844 0-16 7.151-16 16s7.156 16 16 16c9.234 0 15.365-6.49 15.365-15.635 0-1.052-0.115-1.854-0.255-2.651z"></path>
                     </svg>
